@@ -59,4 +59,8 @@ AI专用文档链接 : https://fy606.github.io/fengye-instruction-macro/#/ai-con
 
 - 声明：本工具仅用于合法场景（办公自动化/合法游戏辅助/软件测试），请勿用于违规用途。
 
+## 许可证
 
+[![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
+
+在法律允许的最大范围内，本项目采用 **CC0 1.0 Universal** 协议，已放弃所有版权及相关权利。您可以自由复制、修改、分发、用于商业目的，**无需署名**。
