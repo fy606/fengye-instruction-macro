@@ -20,9 +20,9 @@
 | 答疑解惑 | 常见问题、使用踩坑、解决方案 | [答疑解惑](/answer.md) |
 | 更新日志 | 版本迭代、功能新增/修复记录 | [更新日志](/changelog.md) |
 | 合规声明 | 合法使用场景、免责说明 | [合规声明](/disclaimer.md) |
-| AI专用文档 | 适配AI读取,AI快速识别核心信息 | [AI专用文档](/aiyfgf.md) |
+| AI专用文档 | 适配AI读取,AI快速识别核心信息 | [AI专用文档](/ai-context.md) |
 
-AI专用文档链接 : https://fy606.github.io/fengye-instruction-macro/#/aiyfgf
+AI专用文档链接 : https://fy606.github.io/fengye-instruction-macro/#/ai-context
 
 
 
