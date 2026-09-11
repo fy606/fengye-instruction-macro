@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh">
-
 <head>
   <meta charset="UTF-8">
   <title>枫叶指令宏文档</title>
@@ -32,9 +31,7 @@
       --border: #e1e4e8;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       background: #f6f8fa !important;
@@ -49,7 +46,7 @@
       padding-top: 0 !important;
     }
 
-    .sidebar>h1 {
+    .sidebar > h1 {
       margin: 0;
       padding: 20px 16px;
       font-size: 16px;
@@ -104,15 +101,11 @@
       min-height: calc(100vh - 40px) !important;
     }
 
-    .sidebar::-webkit-scrollbar {
-      width: 6px;
-    }
-
+    .sidebar::-webkit-scrollbar { width: 6px; }
     .sidebar::-webkit-scrollbar-thumb {
       background: #d1d5db;
       border-radius: 3px;
     }
-
     .sidebar {
       scrollbar-width: thin;
       scrollbar-color: #d1d5db transparent;
@@ -122,7 +115,6 @@
       .content {
         padding: 0 !important;
       }
-
       .markdown-section {
         margin: 0 !important;
         border-radius: 0 !important;
@@ -133,7 +125,6 @@
     }
   </style>
 </head>
-
 <body>
   <div id="app"></div>
   <script>
@@ -149,7 +140,85 @@
         placeholder: '搜索文档...',
         noData: '没有找到结果',
         depth: 4
-      }
+      },
+      plugins: [
+        function (hook, vm) {
+          hook.doneEach(function () {
+            // 每次换页先清掉旧按钮
+            var old = document.getElementById('ai-copy-btn');
+            if (old) old.remove();
+
+            // 只在 AI 文档页加按钮
+            var path = vm.route.path;
+            if (path !== '/aiyfgf' && path !== '/aiyfgf.md') return;
+
+            // 创建按钮
+            var btn = document.createElement('button');
+            btn.id = 'ai-copy-btn';
+            btn.textContent = '📋 一键复制全文给 AI';
+            btn.style.cssText = [
+              'position:fixed',
+              'right:30px',
+              'bottom:80px',
+              'z-index:9999',
+              'padding:12px 22px',
+              'background:#007acc',
+              'color:#fff',
+              'border:none',
+              'border-radius:8px',
+              'cursor:pointer',
+              'font-size:14px',
+              'font-weight:600',
+              'box-shadow:0 4px 14px rgba(0,122,204,.35)',
+              'transition:all .2s'
+            ].join(';');
+            btn.onmouseover = function () { btn.style.background = '#005fa3'; };
+            btn.onmouseout  = function () { btn.style.background = '#007acc'; };
+
+            btn.onclick = function () {
+              fetch('aiyfgf.md')
+                .then(function (r) { return r.text(); })
+                .then(function (text) {
+                  return copyText(text);
+                })
+                .then(function () {
+                  btn.textContent = '✅ 已复制！粘贴给 AI 即可';
+                  setTimeout(function () {
+                    btn.textContent = '📋 一键复制全文给 AI';
+                  }, 2200);
+                })
+                .catch(function () {
+                  btn.textContent = '❌ 复制失败，请手动选择';
+                  setTimeout(function () {
+                    btn.textContent = '📋 一键复制全文给 AI';
+                  }, 2200);
+                });
+            };
+
+            // 复制到剪贴板（带降级方案）
+            function copyText(text) {
+              if (navigator.clipboard && window.isSecureContext) {
+                return navigator.clipboard.writeText(text);
+              }
+              return new Promise(function (resolve, reject) {
+                try {
+                  var ta = document.createElement('textarea');
+                  ta.value = text;
+                  ta.style.position = 'fixed';
+                  ta.style.left = '-9999px';
+                  document.body.appendChild(ta);
+                  ta.select();
+                  document.execCommand('copy');
+                  document.body.removeChild(ta);
+                  resolve();
+                } catch (e) { reject(e); }
+              });
+            }
+
+            document.body.appendChild(btn);
+          });
+        }
+      ]
     };
   </script>
   <script src="lib/docsify.min.js"></script>
@@ -157,5 +226,4 @@
   <script src="lib/plugins/emoji.min.js"></script>
   <script src="lib/plugins/zoom-image.min.js"></script>
 </body>
-
 </html>
