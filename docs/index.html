@@ -150,7 +150,7 @@
 
             // 只在 AI 文档页加按钮
             var path = vm.route.path;
-            if (path !== '/aiyfgf' && path !== '/aiyfgf.md') return;
+            if (path !== '/ai-context' && path !== '/ai-context.md') return;
 
             // 创建按钮
             var btn = document.createElement('button');
@@ -176,7 +176,7 @@
             btn.onmouseout  = function () { btn.style.background = '#007acc'; };
 
             btn.onclick = function () {
-              fetch('aiyfgf.md')
+              fetch('ai-context.md')
                 .then(function (r) { return r.text(); })
                 .then(function (text) {
                   return copyText(text);
