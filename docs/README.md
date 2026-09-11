@@ -22,7 +22,7 @@
 | 合规声明 | 合法使用场景、免责说明 | [合规声明](/disclaimer.md) |
 | AI专用文档 | 适配AI读取,AI快速识别核心信息 | [AI专用文档](/aiyfgf.md) |
 
-AI专用文档链接 : https://fy606.github.io/fyzlh/#/aiyfgf
+AI专用文档链接 : https://fy606.github.io/fengye-instruction-macro/#/aiyfgf
 
 
 
