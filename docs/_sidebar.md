@@ -5,3 +5,4 @@
 * [答疑解惑](/answer.md)
 * [更新日志](/changelog.md)
 * [合规声明](/disclaimer.md)
+* [AI专用文档](/ai-context.md)
